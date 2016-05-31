@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  * 作者：李智宏 on 2016/5/27 09:50
  * 描述：
  */
-public class Fragment1 extends BasePage implements View.OnClickListener {
+public class Fragment1 extends BasePage{
     @Bind(R.id.fragment1_banner)
     ConvenientBanner<String> convenientBanner;// 顶部广告栏控件
     List<String> banaerList;
@@ -58,6 +58,21 @@ public class Fragment1 extends BasePage implements View.OnClickListener {
         convenientBanner.requestFocus();
         convenientBanner.setLayoutParams(new LinearLayout.LayoutParams(DensityUtil.ScreenWh(context)[0],
                 (int) (DensityUtil.ScreenWh(context)[0] / 6 * 3.5)));
+    }
+
+    @Override
+    public void onSuccuss(String tag, String code, String msg, String resultData) {
+
+    }
+
+    @Override
+    public void onFailure(String tag, String code, String msg) {
+
+    }
+
+    @Override
+    public void onProgress(float progress) {
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.hong.hongbaseframe.util;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 public class DensityUtil {
@@ -30,9 +31,10 @@ public class DensityUtil {
 		int screen [] = new int [2];
 		WindowManager wm = (WindowManager) ct
 				.getSystemService(Context.WINDOW_SERVICE);
-
-		int width = wm.getDefaultDisplay().getWidth();
-		int height = wm.getDefaultDisplay().getHeight();
+		DisplayMetrics outMetrics = new DisplayMetrics();
+		wm.getDefaultDisplay().getMetrics(outMetrics);
+		int width = outMetrics.widthPixels;
+		int height = outMetrics.heightPixels;
 		
 		screen[0] = width;
 		screen[1] = height;

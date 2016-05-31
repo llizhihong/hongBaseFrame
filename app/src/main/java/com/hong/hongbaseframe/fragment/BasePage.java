@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.hong.hongbaseframe.callback.OnResponseListener;
+
 /**
  * 作者：李智宏 on 2016/5/27 09:43
  * 描述：FragMent基准
  */
-public class BasePage extends Fragment{
+public abstract class BasePage extends Fragment implements OnResponseListener, View.OnClickListener{
     protected Context context;
     protected View view;
 

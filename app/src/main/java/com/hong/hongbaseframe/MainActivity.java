@@ -13,9 +13,13 @@ import com.hong.hongbaseframe.fragment.Fragment1;
 import com.hong.hongbaseframe.fragment.Fragment2;
 import com.hong.hongbaseframe.fragment.Fragment3;
 import com.hong.hongbaseframe.fragment.Fragment4;
+import com.hong.hongbaseframe.util.Logger;
+import com.hong.hongbaseframe.util.NetUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -75,7 +79,10 @@ public class MainActivity extends BaseActivity {
                 //	                }
             }
         });
-
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("aa", "");
+        NetUtil.newInstance().requestPost(context, "http://www.baidu.com", map, this);
+        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/", map, this);
     }
 
     @Override
@@ -90,7 +97,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onFailure(String tag, String code, String msg) {
-
+        if("http://www.baidu.com".equals(tag)){
+            Logger.e("url测试", tag);
+        } else if("http://home.baidu.com/".equals(tag)){
+            Logger.e("url测试", tag);
+        }
     }
 
     @Override

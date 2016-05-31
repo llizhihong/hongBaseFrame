@@ -3,7 +3,13 @@ package com.hong.hongbaseframe.util;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 /**
  * 作者：李智宏 on 2016/5/27 15:50
@@ -55,5 +61,53 @@ public class AppUtils {
         } catch (ActivityNotFoundException localActivityNotFoundException) {
             //出现此异常则说明此手机上没有装应用市场软件
         }
+    }
+
+    /**
+     * 获取当前APP版本号
+     * */
+    public static int getVersionCode(Context context) {
+        try {
+            PackageManager e = context.getPackageManager();
+            PackageInfo packageInfo = e.getPackageInfo(context.getPackageName(), 0);
+            return packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException var3) {
+            var3.printStackTrace();
+            return 0;
+        }
+    }
+
+    /**
+     * 获取设备ID
+     * */
+    public static String getDeviceId(Context context) {
+        try {
+            TelephonyManager e = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+            String device_id = e.getDeviceId();
+            if(TextUtils.isEmpty(device_id)) {
+                device_id = Settings.Secure.getString(context.getContentResolver(), "android_id");
+            }
+
+            return device_id;
+        } catch (Exception var3) {
+            var3.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 获取手机Mac物理地址
+     * */
+    public static String getMacAddress(Context context) {
+        String macAddress = "";
+
+        try {
+            WifiManager e = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+            macAddress = e.getConnectionInfo().getMacAddress();
+        } catch (Exception var3) {
+            var3.printStackTrace();
+        }
+
+        return macAddress;
     }
 }

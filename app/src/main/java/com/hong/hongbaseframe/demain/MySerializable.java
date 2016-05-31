@@ -10,14 +10,14 @@ public class MySerializable implements Serializable{
     private static final long serialVersionUID = -4819321280028042280L;
     public String code;
     public String time;
-    public String msg;
+    public String message;
 
     @Override
     public String toString() {
         return "MySerializable{" +
                 "code='" + code + '\'' +
                 ", time='" + time + '\'' +
-                ", msg='" + msg + '\'' +
+                ", msg='" + message + '\'' +
                 '}';
     }
 }
