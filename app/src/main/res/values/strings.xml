@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">基础框架</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_sample">示例</string>
+
+    <!-- 非空判断 -->
+    <string name="null_phone">手机号不能为空</string>
+    <string name="null_code">你还没有输入验证码</string>
+    <string name="null_password">密码不能为空</string>
+    <string name="null_phoneNumber">电话号码不能为空</string>
+    <string name="null_realName">姓名不能为空</string>
+    <string name="null_sex">性别不能为空</string>
+    <string name="null_birthday">出生日期不能为空</string>
+    <string name="null_height">身高不能为空</string>
+    <string name="null_address">所在城市不能为空</string>
+    <string name="null_account">账号不能为空</string>
+    <string name="null_repass">确认密码不能为空</string>
+    <string name="null_caseDesc">描述信息不能为空</string>
+    <string name="null_info">事件说明不能为空</string>
+    <string name="null_date">日期不能为空</string>
+
+    <string name="titlebar_back">返回</string>
+    <string name="titlebar_previous">上一步</string>
+    <string name="titlebar_login">登录</string>
+    <string name="titlebar_next">下一步</string>
+    <string name="titlebar_submit">提交</string>
+    <string name="titlebar_agree">同意协议</string>
+
+    <!-- 登录 -->
+    <string name="login_account">手机号</string>
+    <string name="login_pwd">密码</string>
+    <string name="login_login">登录</string>
+    <string name="login_forget">找回密码</string>
+    <string name="login_register">注册账号</string>
+    <string name="login_shopping">随便逛逛</string>
+
+    <!-- 注册 -->
+    <string name="register_title">注册</string>
+    <string name="register_register">免费注册</string>
+    <string name="register_phone">手机号</string>
+    <string name="register_pwd">密码</string>
+    <string name="register_repwd">确认密码</string>
+    <string name="register_realName">姓名</string>
+    <string name="register_code">验证码</string>
+    <string name="register_format">请输入有效的手机号码</string>
+    <string name="register_different">密码和确认密码不一致</string>
+    <string name="register_maxlenth">密码不能超过20位</string>
+    <string name="register_minlenth">密码不能小于6位</string>
+    <string name="register_inputName">请输入中文或英文</string>
+    <string name="register_inputNumber">只可输入纯数字</string>
+    <string name="register_getcode">获取验证码</string>
+    <string name="register_regetcode">重新获取</string>
+    <string name="register_sregetcode">秒后重新获取</string>
+    <string name="register_agree">君奕用户协议</string>
+    <string name="register_must">必填项</string>
+    <string name="register_null">未填写</string>
+    <string name="register_checkBox">我已阅读并接受</string>
+    <string name="register_xing">*</string>
+
+    <!-- 找回密码 -->
+    <string name="forget_title">找回密码</string>
+    <string name="reset_newpwd">新密码</string>
+    <string name="reset_newRepwd">确认新密码</string>
+    <string name="reset_title">重置密码</string>
+    <string name="code_flase">验证码错误</string>
+    <string name="password_def">旧密码输入有误</string>
+    <string name="password_old_maxlenth">旧密码不能超过20位</string>
+    <string name="password_old_minlenth">旧密码不能小于6位</string>
+    <string name="password_new_maxlenth">新密码不能超过20位</string>
+    <string name="password_new_minlenth">新密码不能小于6位</string>
+
+    <!-- 图片选择dialog -->
+    <string name="dialog_cancle">取消</string>
+    <string name="dialog_selecthome">从相册中选取</string>
+    <string name="dialog_photo">拍照</string>
+    <!-- 主页面底部按钮 -->
+    <string name="tab_1">买衣</string>
+    <string name="tab_2">洗衣</string>
+    <string name="tab_3">礼品</string>
+    <string name="tab_4">我的</string>
+
+    <!-- 加载数据中Dialog -->
+    <string name="loadTitle"><strong>正在请求数据&#8230;</strong></string>
+    <string name="LoadContent"><strong>请稍候&#8230;</strong></string>
+</resources>

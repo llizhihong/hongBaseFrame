@@ -1,0 +1,39 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- 标题字体大小 -->
+    <dimen name="titlebar_title">20.0sp</dimen>
+    <dimen name="titlebar_left">18.0sp</dimen>
+    <dimen name="titlebar_right">18.0sp</dimen>
+
+    <!-- 距离左侧的边距 -->
+    <dimen name="left_margin_dimen">10dp</dimen>
+    <!-- 距离右侧的边距 -->
+    <dimen name="right_margin_dimen">10dp</dimen>
+    <!-- 距离顶侧的边距 -->
+    <dimen name="top_margin_dimen">10dp</dimen>
+    <!-- 距离底部的边距 -->
+    <dimen name="bottom_margin_dimen">10dp</dimen>
+
+    <!-- 线的高度 -->
+    <dimen name="line_height">1dp</dimen>
+
+    <!-- 底部文字与顶部图标的距离 -->
+    <dimen name="bottom_tab_padding_up">2.0dip</dimen>
+
+    <!-- 一个条目的高 -->
+    <dimen name="item_height">45dp</dimen>
+
+    <!-- 内容文字大小 -->
+    <dimen name="content_20">20.0sp</dimen>
+    <dimen name="content_18">18.0sp</dimen>
+    <dimen name="content_17">17.0sp</dimen>
+    <dimen name="content_16">16.0sp</dimen>
+    <dimen name="content_15">15.0sp</dimen>
+    <dimen name="content_14">14.0sp</dimen>
+    <dimen name="content_13">13.0sp</dimen>
+    <dimen name="content_12">12.0sp</dimen>
+</resources>

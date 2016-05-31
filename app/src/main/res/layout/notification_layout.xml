@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+    <ImageView
+        android:layout_width="70dp"
+        android:background="#405B65"
+        android:layout_height="match_parent"
+        android:id="@+id/iv_notification_icon"
+        android:src="@mipmap/ic_launcher"/>
+    <TextView
+        android:id="@+id/tv_notification_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:layout_toRightOf="@+id/iv_notification_icon"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:text="基础框架"/>
+    <TextView
+        android:id="@+id/tv_notification_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_notification_icon"
+        android:layout_below="@+id/tv_notification_title"
+        android:layout_marginTop="3dp"
+        android:text="下载进度9%"
+        android:textSize="12sp"/>
+</RelativeLayout>
