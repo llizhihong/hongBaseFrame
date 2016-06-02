@@ -5,7 +5,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
-import android.widget.Toast;
 
 import com.hong.hongbaseframe.callback.OnResponseListener;
 import com.hong.hongbaseframe.demain.MySerializable;
@@ -30,9 +29,10 @@ public class NetUtil {
     private String url;
 
     public static NetUtil newInstance() {
-        if (netUtil == null) {
+        /*if (netUtil == null) {
             netUtil = new NetUtil();
-        }
+        }*/
+        netUtil = new NetUtil();
         return netUtil;
     }
 
@@ -169,35 +169,34 @@ public class NetUtil {
     private ResultCallback<String> resultCallback = new ResultCallback<String>() {
         @Override
         public void onBefore(Request request) {
-            Log.e("TAG", "before , request = " + request.toString());
+//            Log.e("TAG", "before , request = " + request.toString());
         }
 
         @Override
         public void onError(Request request, Exception e) {
-            Log.e("TAG", "onError , e = " + e.getMessage());
-            listener.onFailure(request.tag() + "", null, "");
+//            Log.e("TAG", "onError , e = " + e.getMessage());
+            listener.onFailure(url, null, "");
         }
 
         @Override
         public void onResponse(Request request, String response) {
-            Log.e("TAG", "response=" + response);
+//            Log.e("TAG", "re sponse=" + response);
             MySerializable result = GsonTools.gson2Bean(response, MySerializable.class);
             if (result != null & response != null) {
                 if (listener != null) {
-                    listener.onSuccuss(request.tag().toString(), result.code, result.message, response);
+                    listener.onSuccuss(url, result.code, result.message, response);
                 }
             } else {
-                Toast.makeText(context, "解析失败", Toast.LENGTH_SHORT).show();
-                listener.onFailure(request.tag().toString(), null, response);
+//                Toast.makeText(context, "解析失败", Toast.LENGTH_SHORT).show();
+                listener.onFailure(url, null, response);
             }
         }
-
 
 
         @Override
         public void inProgress(float progress) {
             listener.onProgress(progress);
-            Log.e("TAG", "inProgress , progress = " + progress);
+//            Log.e("TAG", "inProgress , progress = " + progress);
         }
     };
 }
