@@ -6,7 +6,7 @@ package com.hong.hongbaseframe.callback;
  */
 public interface OnResponseListener {
     /**
-     * @param tag        接口标志
+     * @param tag        接口标志(目前是url，判断URL去做相应的操作)
      * @param code       状态码
      * @param msg        状态信息
      * @param resultData 返回数据
@@ -14,7 +14,7 @@ public interface OnResponseListener {
     void onSuccuss(String tag, String code, String msg, String resultData);
 
     /**
-     * @param tag  接口标志
+     * @param tag  接口标志(目前是url，判断URL去做相应的操作)
      * @param code 状态码
      * @param msg  状态信息
      */

@@ -29,10 +29,9 @@ public class NetUtil {
     private String url;
 
     public static NetUtil newInstance() {
-        /*if (netUtil == null) {
+        if (netUtil == null) {
             netUtil = new NetUtil();
-        }*/
-        netUtil = new NetUtil();
+        }
         return netUtil;
     }
 
@@ -48,7 +47,10 @@ public class NetUtil {
         this.url = url;
         this.listener = listener;
         isNext();
-        new OkHttpRequest.Builder().tag(url).url(url).get(resultCallback);
+        new OkHttpRequest.Builder()
+                .tag(context)
+                .url(url)
+                .get(resultCallback);
     }
 
 
@@ -65,7 +67,11 @@ public class NetUtil {
         this.url = url;
         this.listener = listener;
         isNext();
-        new OkHttpRequest.Builder().tag(url).url(url).params(params).post(resultCallback);
+        new OkHttpRequest.Builder()
+                .tag(context)
+                .url(url)
+                .params(params)
+                .post(resultCallback);
     }
 
     /**
@@ -87,7 +93,7 @@ public class NetUtil {
         if (file.exists()) {
             new OkHttpRequest.Builder()
                     .url(url)
-                    .tag(url)
+                    .tag(context)
                     .params(params)
                     .files(new Pair<String, File>("mFile", file))//
                     .upload(resultCallback);
@@ -131,7 +137,7 @@ public class NetUtil {
         isNext();
         new OkHttpRequest.Builder()
                 .url(url)
-                .tag(url)
+                .tag(context)
                 .destFileDir(
                         Environment.getExternalStorageDirectory()
                                 .getAbsolutePath())
@@ -167,6 +173,7 @@ public class NetUtil {
      * 封装的Okhttp接口回调
      */
     private ResultCallback<String> resultCallback = new ResultCallback<String>() {
+        //请求之前
         @Override
         public void onBefore(Request request) {
 //            Log.e("TAG", "before , request = " + request.toString());
@@ -175,20 +182,23 @@ public class NetUtil {
         @Override
         public void onError(Request request, Exception e) {
 //            Log.e("TAG", "onError , e = " + e.getMessage());
-            listener.onFailure(url, null, "");
+            listener.onFailure(request.url().toString(), null, "");
         }
 
         @Override
         public void onResponse(Request request, String response) {
-//            Log.e("TAG", "re sponse=" + response);
+//            Log.e("TAG", "response=" + response);
+            Log.e("TAG", "request.url()=" + request.url().toString());
             MySerializable result = GsonTools.gson2Bean(response, MySerializable.class);
             if (result != null & response != null) {
                 if (listener != null) {
-                    listener.onSuccuss(url, result.code, result.message, response);
+                    listener.onSuccuss(request.url().toString()+"", result.code, result.message, response);
                 }
             } else {
 //                Toast.makeText(context, "解析失败", Toast.LENGTH_SHORT).show();
-                listener.onFailure(url, null, response);
+                if (listener != null) {
+                    listener.onFailure(request.url().toString(), null, response);
+                }
             }
         }
 
