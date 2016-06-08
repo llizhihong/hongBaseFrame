@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.hong.hongbaseframe.callback.OnResponseListener;
+import com.hong.hongbaseframe.util.AppManager;
 
 /**
  * 作者：李智宏 on 2016/5/27 17:21
@@ -30,4 +31,9 @@ public abstract class BaseActivity extends AppCompatActivity implements OnRespon
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getInstance().killActivity(this);
+    }
 }

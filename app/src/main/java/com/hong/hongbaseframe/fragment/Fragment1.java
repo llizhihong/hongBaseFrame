@@ -65,8 +65,8 @@ public class Fragment1 extends BasePage{
 
         Map<String, String> map = new HashMap<String, String>();
         map.put("aa", "");
-        NetUtil.newInstance().requestPost(context, "http://www.baidu.com", map, this);
-        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/", map, this);
+//        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/", map, this);
+        NetUtil.newInstance().requestGet(context, "http://home.baidu.com/", this);
     }
 
     @Override
@@ -77,9 +77,11 @@ public class Fragment1 extends BasePage{
     @Override
     public void onFailure(String tag, String code, String msg) {
         if("http://www.baidu.com".equals(tag)){
-            Logger.e("fragMent url测试", tag);
+            Logger.e("fragMent1 url测试", tag);
         } else if("http://home.baidu.com/".equals(tag)){
-            Logger.e("fragMent url测试", tag);
+            Logger.e("fragMent1 url测试", tag);
+        } else if("http://home.baidu.com/contact.html".equals(tag)){
+            Logger.e("fragMent1 url测试", tag);
         }
     }
 

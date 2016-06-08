@@ -7,45 +7,46 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 public abstract class ResultCallback<T> {
-	public Type mType;
+    public Type mType;
 
-	public ResultCallback() {
-		mType = getSuperclassTypeParameter(getClass());
-	}
+    public ResultCallback() {
+        mType = getSuperclassTypeParameter(getClass());
+    }
 
-	static Type getSuperclassTypeParameter(Class<?> subclass) {
-		Type superclass = subclass.getGenericSuperclass();
-		if (superclass instanceof Class) {
-			throw new RuntimeException("Missing type parameter.");
-		}
-		ParameterizedType parameterized = (ParameterizedType) superclass;
-		return $Gson$Types
-				.canonicalize(parameterized.getActualTypeArguments()[0]);
-	}
+    static Type getSuperclassTypeParameter(Class<?> subclass) {
+        Type superclass = subclass.getGenericSuperclass();
+        if (superclass instanceof Class) {
+            throw new RuntimeException("Missing type parameter.");
+        }
+        ParameterizedType parameterized = (ParameterizedType) superclass;
+        return $Gson$Types
+                .canonicalize(parameterized.getActualTypeArguments()[0]);
+    }
 
-	
-	public void onBefore(Request request) {
-	}
 
-	public void onAfter() {
-	} 
+    public void onBefore(Request request) {
+    }
 
-	public void inProgress(float progress) {
-	}
+    public void onAfter() {
+    }
 
-	public abstract void onError(Request request, Exception e);
+    public void inProgress(float progress) {
+    }
 
-	public abstract void onResponse(Request request, T response);
+    public abstract void onError(Request request, Exception e);
 
-	public static final ResultCallback<String> DEFAULT_RESULT_CALLBACK = new ResultCallback<String>() {
-		@Override
-		public void onError(Request request, Exception e) {
+    public abstract void onResponse(Request request, T response);
 
-		}
 
-		@Override
-		public void onResponse(Request request, String response) {
+    public static final ResultCallback<String> DEFAULT_RESULT_CALLBACK = new ResultCallback<String>() {
+        @Override
+        public void onError(Request request, Exception e) {
 
-		}
-	};
+        }
+
+        @Override
+        public void onResponse(Request request, String response) {
+
+        }
+    };
 }

@@ -188,20 +188,20 @@ public class NetUtil {
         @Override
         public void onResponse(Request request, String response) {
 //            Log.e("TAG", "response=" + response);
-            Log.e("TAG", "request.url()=" + request.url().toString());
+//            Log.e("TAG", "request.url()=" + request.url().toString());
             MySerializable result = GsonTools.gson2Bean(response, MySerializable.class);
             if (result != null & response != null) {
                 if (listener != null) {
-                    listener.onSuccuss(request.url().toString()+"", result.code, result.message, response);
+                    listener.onSuccuss(request.url().toString(), result.code, result.message, response);
                 }
             } else {
 //                Toast.makeText(context, "解析失败", Toast.LENGTH_SHORT).show();
                 if (listener != null) {
+                    Log.e("TAG", "解析失败" + request.url().toString());
                     listener.onFailure(request.url().toString(), null, response);
                 }
             }
         }
-
 
         @Override
         public void inProgress(float progress) {
