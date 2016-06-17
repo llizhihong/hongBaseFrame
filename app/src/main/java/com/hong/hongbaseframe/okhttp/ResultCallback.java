@@ -1,6 +1,7 @@
 package com.hong.hongbaseframe.okhttp;
 
 import com.google.gson.internal.$Gson$Types;
+import com.hong.hongbaseframe.callback.OnResponseListener;
 import com.squareup.okhttp.Request;
 
 import java.lang.reflect.ParameterizedType;
@@ -8,7 +9,7 @@ import java.lang.reflect.Type;
 
 public abstract class ResultCallback<T> {
     public Type mType;
-
+    public OnResponseListener listener;
     public ResultCallback() {
         mType = getSuperclassTypeParameter(getClass());
     }

@@ -9,15 +9,12 @@ import android.widget.LinearLayout;
 import com.hong.hongbaseframe.R;
 import com.hong.hongbaseframe.util.DensityUtil;
 import com.hong.hongbaseframe.util.Logger;
-import com.hong.hongbaseframe.util.NetUtil;
 import com.hong.hongbaseframe.view.banner.CBViewHolderCreator;
 import com.hong.hongbaseframe.view.banner.ConvenientBanner;
 import com.hong.hongbaseframe.view.banner.NetworkImageHolderView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -63,10 +60,10 @@ public class Fragment1 extends BasePage{
         convenientBanner.setLayoutParams(new LinearLayout.LayoutParams(DensityUtil.ScreenWh(context)[0],
                 (int) (DensityUtil.ScreenWh(context)[0] / 6 * 3.5)));
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("aa", "");
+//        Map<String, String> map = new HashMap<String, String>();
+//        map.put("aa", "");
 //        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/", map, this);
-        NetUtil.newInstance().requestGet(context, "http://home.baidu.com/", this);
+//        NetUtil.newInstance().requestGet(context, "http://home.baidu.com/", this);
     }
 
     @Override

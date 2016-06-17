@@ -14,12 +14,9 @@ import com.hong.hongbaseframe.fragment.Fragment2;
 import com.hong.hongbaseframe.fragment.Fragment3;
 import com.hong.hongbaseframe.fragment.Fragment4;
 import com.hong.hongbaseframe.util.Logger;
-import com.hong.hongbaseframe.util.NetUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -79,11 +76,12 @@ public class MainActivity extends BaseActivity {
                 //	                }
             }
         });
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("aa", "");
-        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/contact.html", map, this);
+//        Map<String, String> map = new HashMap<String, String>();
+//        map.put("aa", "");
+//        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/contact.html", map, this);
 //        NetUtil.newInstance().requestPost(context, "http://www.baidu.com", map, this);
 //        NetUtil.newInstance().requestPost(context, "http://www.baidu.com", map, this);
+//        NetUtil.newInstance().requestGet(context, "http://home.baidu.com/contact.html", this);
     }
 
     @Override

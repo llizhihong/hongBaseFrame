@@ -2,6 +2,7 @@ package com.hong.hongbaseframe.util;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.widget.TextView;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -72,4 +73,13 @@ public class StringUtil {
         return sb.toString();
     }
 
+    public static void setText(TextView textView, Object objec){
+        String str = null;
+        if(objec.equals("") || objec == null || objec.equals("null")){
+            str = "";
+        } else{
+            str = objec.toString();
+        }
+        textView.setText(str);
+    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hong.hongbaseframe">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -27,13 +28,14 @@
     <uses-permission android:name="android.permission.READ_" />
 
     <application
+        android:name="com.hong.hongbaseframe.MyApplication"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name="com.hong.hongbaseframe.MyApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -42,9 +44,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.MyWebActivity"
+            android:screenOrientation="portrait" />
+
         <!-- Glide全局设置tag -->
         <meta-data
             android:name="com.hong.hongbaseframe.util.ImageLoadGlideMoudle"
-            android:value="GlideModule"/>
+            android:value="GlideModule" />
+
+        <!-- uMeng Push -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="575d1054e0f55a12f0002383"></meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="bd18b8321b24b5dc9a297f5baa9e5166"></meta-data>
     </application>
 </manifest>

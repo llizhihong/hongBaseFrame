@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.hong.hongbaseframe.util.PushUtil;
+
 /**
  * 作者：李智宏 on 2016/4/22 14:10
  * 描述：重写Application
@@ -17,6 +19,8 @@ public class MyApplication extends Application{
         super.onCreate();
         mInstace = this;
         applicationContext = this;
+        PushUtil.getInstance().startPush(applicationContext);
+        PushUtil.getInstance().setupCustomNotificationClick(applicationContext);
 //        CrashHandler.getInstance().init(applicationContext);
     }
 

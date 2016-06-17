@@ -47,6 +47,7 @@ public class NetUtil {
         this.url = url;
         this.listener = listener;
         isNext();
+        resultCallback.listener = listener;
         new OkHttpRequest.Builder()
                 .tag(context)
                 .url(url)
@@ -67,6 +68,7 @@ public class NetUtil {
         this.url = url;
         this.listener = listener;
         isNext();
+        resultCallback.listener = listener;
         new OkHttpRequest.Builder()
                 .tag(context)
                 .url(url)
