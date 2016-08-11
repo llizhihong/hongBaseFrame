@@ -5,10 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.hong.hongbaseframe.R;
 import com.hong.hongbaseframe.util.DensityUtil;
-import com.hong.hongbaseframe.util.Logger;
 import com.hong.hongbaseframe.view.banner.CBViewHolderCreator;
 import com.hong.hongbaseframe.view.banner.ConvenientBanner;
 import com.hong.hongbaseframe.view.banner.NetworkImageHolderView;
@@ -23,10 +24,16 @@ import butterknife.ButterKnife;
  * 作者：李智宏 on 2016/5/27 09:50
  * 描述：
  */
-public class Fragment1 extends BasePage{
+public class Fragment1 extends BasePage {
     @Bind(R.id.fragment1_banner)
     ConvenientBanner<String> convenientBanner;// 顶部广告栏控件
     List<String> banaerList;
+    @Bind(R.id.progress)
+    ProgressBar progressBar;
+    @Bind(R.id.tv)
+    TextView tv;
+    @Bind(R.id.lin1)
+    LinearLayout lin1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,7 +44,7 @@ public class Fragment1 extends BasePage{
     }
 
     //初始化Banaer
-    private void initBanner(){
+    private void initBanner() {
         banaerList = new ArrayList<String>();
         banaerList.add("http://imgsrc.baidu.com/forum/pic/item/09be3f094b36acaf0ad6eb717cd98d1000e99cde.jpg");
         banaerList.add("http://attach2.scimg.cn/forum/201503/17/172006zr3762gfgdr5tmu9.jpg");
@@ -49,7 +56,7 @@ public class Fragment1 extends BasePage{
                 return new NetworkImageHolderView();
 
             }
-        },banaerList).setPageIndicator(
+        }, banaerList).setPageIndicator(
                 new int[]{R.mipmap.image_undian,
                         R.mipmap.image_selectdian});
         // 开始自动翻页
@@ -60,10 +67,18 @@ public class Fragment1 extends BasePage{
         convenientBanner.setLayoutParams(new LinearLayout.LayoutParams(DensityUtil.ScreenWh(context)[0],
                 (int) (DensityUtil.ScreenWh(context)[0] / 6 * 3.5)));
 
-//        Map<String, String> map = new HashMap<String, String>();
-//        map.put("aa", "");
-//        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/", map, this);
-//        NetUtil.newInstance().requestGet(context, "http://home.baidu.com/", this);
+        /*NetUtil.getInstance().downLoadFile(context, "http://a.wdjcdn.com/release/files/phoenix/5" +
+                ".17.1.12029/wandoujia-wandoujia-web_inner_referral_binded_5.17.1.12029.ap" +
+                "k?remove=2&append=%97%00eyJhcHBEb3dubG9hZCI6eyJkb3dubG9hZFR5cGUiOiJkb3dubG9hZF9i" +
+                "eV9wYWNrYWdlX25hbWUiLCJwYWNrYWdlTmFtZSI6ImNvbS5qaWFuYW5maW5hbmNlLnRoZWJhbmsifX" +
+                "0Wdj01B0000872640", "建安金融.apk", this);*/
+
+        tv.setOnClickListener(null);
+        lin1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 
     @Override
@@ -73,22 +88,22 @@ public class Fragment1 extends BasePage{
 
     @Override
     public void onFailure(String tag, String code, String msg) {
-        if("http://www.baidu.com".equals(tag)){
-            Logger.e("fragMent1 url测试", tag);
-        } else if("http://home.baidu.com/".equals(tag)){
-            Logger.e("fragMent1 url测试", tag);
-        } else if("http://home.baidu.com/contact.html".equals(tag)){
-            Logger.e("fragMent1 url测试", tag);
-        }
     }
 
     @Override
     public void onProgress(float progress) {
-
+//        Logger.e("进度显示", progress + "");
+        progressBar.setProgress((int) progress);
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

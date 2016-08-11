@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hong.hongbaseframe.util.Logger;
-
 /**
  * 作者：李智宏 on 2016/5/27 09:50
  * 描述：
@@ -22,7 +20,6 @@ public class Fragment2 extends BasePage{
     }
 
     private void init(){
-//        NetUtil.newInstance().requestGet(context, "http://ir.baidu.com/phoenix.zhtml?c=188488&p=irol-irhome/", this);
     }
 
     @Override
@@ -32,9 +29,6 @@ public class Fragment2 extends BasePage{
 
     @Override
     public void onFailure(String tag, String code, String msg) {
-        if("http://ir.baidu.com/phoenix.zhtml?c=188488&p=irol-irhome/".equals(tag)){
-            Logger.e("fragMent2 url测试", tag);
-        }
     }
 
     @Override

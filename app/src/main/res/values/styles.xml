@@ -1,15 +1,27 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="ApptThemeCommon">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-    <style name="AppTheme.NoActionBar">
+    <style name="text">
+        <item name="android:background">?selectableItemBackground</item>
+    </style>
+    <style name="ApptThemeCommon" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/bg_activity</item>
+        <item name="colorButtonNormal">#fe6246</item>
         <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- 页面字体默认颜色 -->
+        <item name="android:textColorPrimary">@color/tv_common_normal</item>
+        <!-- 页面提示文字默认颜色 -->
+        <item name="android:textColorHint">@color/tv_common_hint</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -22,7 +34,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsFloating">true</item>
-        <item name="android:windowFrame">@null</item>
+        <item name="android:windowFrame">@null</item>h
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -46,9 +58,9 @@
     <style name="main_tab_bottom">
         <item name="android:textSize">@dimen/content_14</item>
         <item name="android:textColor">@color/radion_bottom_text_color</item>
+        <item name="android:background">@color/transparent</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@color/transparent</item>
         <item name="android:paddingTop">@dimen/bottom_tab_padding_up</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">fill_parent</item>

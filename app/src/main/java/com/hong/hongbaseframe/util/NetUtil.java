@@ -3,7 +3,6 @@ package com.hong.hongbaseframe.util;
 import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Pair;
 
 import com.hong.hongbaseframe.callback.OnResponseListener;
@@ -22,15 +21,19 @@ import java.util.Map;
 public class NetUtil {
     private static NetUtil netUtil;
     //网络回调
-    public OnResponseListener listener;
+    private OnResponseListener listener;
     //上下文
     private Context context;
     //请求地址
     private String url;
 
-    public static NetUtil newInstance() {
+    public static NetUtil getInstance() {
         if (netUtil == null) {
-            netUtil = new NetUtil();
+            synchronized (NetUtil.class) {
+                if (netUtil == null)
+                    netUtil = new NetUtil();
+
+            }
         }
         return netUtil;
     }
@@ -47,9 +50,8 @@ public class NetUtil {
         this.url = url;
         this.listener = listener;
         isNext();
-        resultCallback.listener = listener;
         new OkHttpRequest.Builder()
-                .tag(context)
+                .tag(listener)
                 .url(url)
                 .get(resultCallback);
     }
@@ -68,9 +70,8 @@ public class NetUtil {
         this.url = url;
         this.listener = listener;
         isNext();
-        resultCallback.listener = listener;
         new OkHttpRequest.Builder()
-                .tag(context)
+                .tag(listener)
                 .url(url)
                 .params(params)
                 .post(resultCallback);
@@ -95,7 +96,7 @@ public class NetUtil {
         if (file.exists()) {
             new OkHttpRequest.Builder()
                     .url(url)
-                    .tag(context)
+                    .tag(listener)
                     .params(params)
                     .files(new Pair<String, File>("mFile", file))//
                     .upload(resultCallback);
@@ -120,7 +121,23 @@ public class NetUtil {
         this.url = url;
         this.listener = listener;
         isNext();
-        Pair<String, File>[] pairs;
+        String []filePaths = filePath;
+        for(String str:filePaths){
+            File file = new File(str);
+            if (!file.exists()) {
+                throw new IllegalArgumentException("文件不存在，请修改文件路径");
+            }
+        }
+        Pair<String, File>[] pairs = new Pair[filePaths.length];
+        for(int i=0; i<filePaths.length; i++){
+            pairs[i] = new Pair<String, File>("mFile", new File(filePaths[i]));
+        }
+        new OkHttpRequest.Builder()
+                .url(url)
+                .tag(listener)
+                .params(params)
+                .files(pairs)//
+                .upload(resultCallback);
     }
 
 
@@ -139,7 +156,7 @@ public class NetUtil {
         isNext();
         new OkHttpRequest.Builder()
                 .url(url)
-                .tag(context)
+                .tag(listener)
                 .destFileDir(
                         Environment.getExternalStorageDirectory()
                                 .getAbsolutePath())
@@ -166,7 +183,7 @@ public class NetUtil {
 
         //判断是否有网络
         if (!CommonUtil.hasNetwork(context)) {
-            Log.e("NetUtil", "无网络不可请求");
+            Logger.e("NetUtil", "无网络不可请求");
             return;
         }
     }
@@ -178,37 +195,48 @@ public class NetUtil {
         //请求之前
         @Override
         public void onBefore(Request request) {
-//            Log.e("TAG", "before , request = " + request.toString());
+//            Logger.e("TAG", "before , request = " + request.toString());
         }
 
         @Override
         public void onError(Request request, Exception e) {
-//            Log.e("TAG", "onError , e = " + e.getMessage());
-            listener.onFailure(request.url().toString(), null, "");
+            Logger.e("TAG", "onError , e = " + e.getMessage() + "????" + request.url().toString());
+            ((OnResponseListener) request.tag()).onFailure(request.url().toString(), null, "");
         }
 
         @Override
         public void onResponse(Request request, String response) {
-//            Log.e("TAG", "response=" + response);
-//            Log.e("TAG", "request.url()=" + request.url().toString());
-            MySerializable result = GsonTools.gson2Bean(response, MySerializable.class);
+//            Logger.e("TAG", "response=" + response);
+//            Logger.e("TAG", "request.url()=" + request.url().toString());
+           /* MySerializable result = GsonTools.gson2Bean(response, MySerializable.class);
             if (result != null & response != null) {
                 if (listener != null) {
                     listener.onSuccuss(request.url().toString(), result.code, result.message, response);
                 }
             } else {
-//                Toast.makeText(context, "解析失败", Toast.LENGTH_SHORT).show();
                 if (listener != null) {
-                    Log.e("TAG", "解析失败" + request.url().toString());
+                    Logger.e("TAG", "解析失败" + request.url().toString());
+                    listener.onFailure(request.url().toString(), null, response);
+                }
+            }*/
+            MySerializable result = GsonTools.gson2Bean(response, MySerializable.class);
+            OnResponseListener listener = (OnResponseListener) request.tag();
+            if (result != null & response != null) {
+                if (listener != null) {
+                    listener.onSuccuss(request.url().toString(), result.code, result.message, response);
+                }
+            } else {
+                if (listener != null) {
+                    Logger.e("TAG", "解析失败" + request.url().toString());
                     listener.onFailure(request.url().toString(), null, response);
                 }
             }
         }
 
         @Override
-        public void inProgress(float progress) {
-            listener.onProgress(progress);
-//            Log.e("TAG", "inProgress , progress = " + progress);
+        public void inProgress(Request request, float progress) {
+            ((OnResponseListener) request.tag()).onProgress(progress);
+//            Logger.e("TAG", "inProgress , progress = " + progress);
         }
     };
 }

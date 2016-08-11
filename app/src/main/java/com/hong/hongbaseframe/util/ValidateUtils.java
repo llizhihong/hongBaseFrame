@@ -79,12 +79,30 @@ public class ValidateUtils {
      *
      * @param str
      */
-    public static boolean isPassword(String str) {
+    public static boolean isNumberPassword(String str) {
         Pattern p = null;
         Matcher m = null;
         boolean b = false;
         try {
             p = Pattern.compile("^//d{6,16}$"); //
+            m = p.matcher(str);
+            b = m.matches();
+        } catch (Exception e) {
+        }
+        return b;
+    }
+
+    /**
+     * 密码验证
+     *
+     * @param str
+     */
+    public static boolean isPassword(String str) {
+        Pattern p = null;
+        Matcher m = null;
+        boolean b = false;
+        try {
+            p = Pattern.compile("[A-Z,a-z,0-9]$"); //
             m = p.matcher(str);
             b = m.matches();
         } catch (Exception e) {

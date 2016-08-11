@@ -28,7 +28,7 @@ public class OkHttpPostRequest extends OkHttpRequest
 
     private final MediaType MEDIA_TYPE_STREAM = MediaType.parse("application/octet-stream;charset=utf-8");
     private final MediaType MEDIA_TYPE_STRING = MediaType.parse("text/plain;charset=utf-8");
-
+    private Request callBackRequest;
 
     protected OkHttpPostRequest(String url, Object tag, Map<String, String> params, Map<String, String> headers, MediaType mediaType, String content, byte[] bytes, File file)
     {
@@ -79,7 +79,8 @@ public class OkHttpPostRequest extends OkHttpRequest
         Request.Builder builder = new Request.Builder();
         appendHeaders(builder, headers);
         builder.url(url).tag(tag).post(requestBody);
-        return builder.build();
+        callBackRequest = builder.build();
+        return callBackRequest;
     }
 
     @Override
@@ -123,7 +124,7 @@ public class OkHttpPostRequest extends OkHttpRequest
                     @Override
                     public void run()
                     {
-                        callback.inProgress(bytesWritten * 1.0f / contentLength);
+                        callback.inProgress(callBackRequest, bytesWritten * 1.0f / contentLength);
                     }
                 });
 

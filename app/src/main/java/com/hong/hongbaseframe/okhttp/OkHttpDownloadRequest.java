@@ -1,11 +1,11 @@
 package com.hong.hongbaseframe.okhttp;
 
-import android.util.Log;
-
+import com.hong.hongbaseframe.util.Logger;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import com.ta.utdid2.android.utils.StringUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,8 +16,7 @@ import java.util.Map;
 /**
  * Created by zhy on 15/11/6.
  */
-public class OkHttpDownloadRequest extends OkHttpGetRequest
-{
+public class OkHttpDownloadRequest extends OkHttpGetRequest {
     private String destFileDir;
     private String destFileName;
 
@@ -25,8 +24,7 @@ public class OkHttpDownloadRequest extends OkHttpGetRequest
     protected OkHttpDownloadRequest(
             String url, Object tag, Map<String,
             String> params, Map<String, String> headers,
-            String destFileName, String destFileDir)
-    {
+            String destFileName, String destFileDir) {
         super(url, tag, params, headers);
         this.destFileName = destFileName;
         this.destFileDir = destFileDir;
@@ -34,28 +32,22 @@ public class OkHttpDownloadRequest extends OkHttpGetRequest
 
 
     @Override
-    public void invokeAsyn(final ResultCallback callback)
-    {
+    public void invokeAsyn(final ResultCallback callback) {
         prepareInvoked(callback);
 
         final Call call = mOkHttpClient.newCall(request);
-        call.enqueue(new Callback()
-        {
+        call.enqueue(new Callback() {
             @Override
-            public void onFailure(final Request request, final IOException e)
-            {
+            public void onFailure(final Request request, final IOException e) {
                 mOkHttpClientManager.sendFailResultCallback(request, e, callback);
             }
 
             @Override
-            public void onResponse(Response response)
-            {
-                try
-                {
+            public void onResponse(Response response) {
+                try {
                     String filePath = saveFile(response, callback);
                     OkHttpClientManager.getInstance().sendSuccessResultCallback(request, filePath, callback);
-                } catch (IOException e)
-                {
+                } catch (IOException e) {
                     e.printStackTrace();
                     OkHttpClientManager.getInstance().sendFailResultCallback(response.request(), e, callback);
                 }
@@ -64,56 +56,47 @@ public class OkHttpDownloadRequest extends OkHttpGetRequest
 
     }
 
-    private String getFileName(String path)
-    {
+    private String getFileName(String path) {
         int separatorIndex = path.lastIndexOf("/");
         return (separatorIndex < 0) ? path : path.substring(separatorIndex + 1, path.length());
     }
 
     @Override
-    public <T> T invoke(Class<T> clazz) throws IOException
-    {
+    public <T> T invoke(Class<T> clazz) throws IOException {
         final Call call = mOkHttpClient.newCall(request);
         Response response = call.execute();
         return (T) saveFile(response, null);
     }
 
-    public String saveFile(Response response, final ResultCallback callback) throws IOException
-    {
+    public String saveFile(Response response, final ResultCallback callback) throws IOException {
         InputStream is = null;
         byte[] buf = new byte[2048];
         int len = 0;
         FileOutputStream fos = null;
-        try
-        {
+        try {
             is = response.body().byteStream();
             final long total = response.body().contentLength();
             long sum = 0;
 
-            Log.e("",total + "");
+            Logger.e("downloadRequest", "全部:"+total);
 
             File dir = new File(destFileDir);
-            if (!dir.exists())
-            {
+            if (!dir.exists()) {
                 dir.mkdirs();
             }
+            StringUtils.isEmpty("");
             File file = new File(dir, destFileName);
             fos = new FileOutputStream(file);
-            while ((len = is.read(buf)) != -1)
-            {
+            while ((len = is.read(buf)) != -1) {
                 sum += len;
                 fos.write(buf, 0, len);
 
-                if (callback != null)
-                {
+                if (callback != null) {
                     final long finalSum = sum;
-                    mOkHttpClientManager.getDelivery().post(new Runnable()
-                    {
+                    mOkHttpClientManager.getDelivery().post(new Runnable() {
                         @Override
-                        public void run()
-                        {
-
-                            callback.inProgress(finalSum * 1.0f / total);
+                        public void run() {
+                            callback.inProgress(request, finalSum * 1.0f / total * 100);
                         }
                     });
                 }
@@ -122,19 +105,14 @@ public class OkHttpDownloadRequest extends OkHttpGetRequest
 
             return file.getAbsolutePath();
 
-        } finally
-        {
-            try
-            {
+        } finally {
+            try {
                 if (is != null) is.close();
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
             }
-            try
-            {
+            try {
                 if (fos != null) fos.close();
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
             }
 
         }

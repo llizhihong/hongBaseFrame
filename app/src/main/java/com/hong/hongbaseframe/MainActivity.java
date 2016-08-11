@@ -1,8 +1,8 @@
 package com.hong.hongbaseframe;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,13 +13,11 @@ import com.hong.hongbaseframe.fragment.Fragment1;
 import com.hong.hongbaseframe.fragment.Fragment2;
 import com.hong.hongbaseframe.fragment.Fragment3;
 import com.hong.hongbaseframe.fragment.Fragment4;
-import com.hong.hongbaseframe.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * 作者：李智宏 on 2016/5/27 09:41
@@ -48,11 +46,8 @@ public class MainActivity extends BaseActivity {
     private List<Fragment> mFragMents;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        init();
+    protected int setContentView() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -76,12 +71,6 @@ public class MainActivity extends BaseActivity {
                 //	                }
             }
         });
-//        Map<String, String> map = new HashMap<String, String>();
-//        map.put("aa", "");
-//        NetUtil.newInstance().requestPost(context, "http://home.baidu.com/contact.html", map, this);
-//        NetUtil.newInstance().requestPost(context, "http://www.baidu.com", map, this);
-//        NetUtil.newInstance().requestPost(context, "http://www.baidu.com", map, this);
-//        NetUtil.newInstance().requestGet(context, "http://home.baidu.com/contact.html", this);
     }
 
     @Override
@@ -96,20 +85,19 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onFailure(String tag, String code, String msg) {
-        if("http://home.baidu.com/contact.html".equals(tag)){
-            Logger.e("MainActivty测试", tag);
-        } else if("http://home.baidu.com/".equals(tag)){
-            Logger.e("MainActivtyurl测试", tag);
-        }
     }
 
     @Override
     public void onProgress(float progress) {
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

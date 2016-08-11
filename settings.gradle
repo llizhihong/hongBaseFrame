@@ -1,1 +1,1 @@
-include ':app', ':refreshLayout', ':PushSDK'
+include ':app', ':refreshLayout', ':PushSDK', ':autolayout', ':pickerview'

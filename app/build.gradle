@@ -13,16 +13,23 @@ android {
     buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.hong.hongbaseframe"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         //导入multidex所需
         multiDexEnabled true
+        //设置应用只支持中文
+        resConfigs "zh"
     }
     buildTypes {
         release {
+            //是否混淆
             minifyEnabled false
+            //是否去除无用资源
+            shrinkResources true
+            // 是否保留debug信息
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -40,5 +47,4 @@ dependencies {
     compile files('libs/butterknife-7.0.1.jar')
     compile project(':PushSDK')
     compile project(':refreshLayout')
-    compile 'com.baichuang:xutilslibary:1.1.0@aar'
 }

@@ -77,6 +77,10 @@ public class PushUtil {
         }
     }
 
+
+    /**
+     * 设置通知栏点击事件
+     * */
     public void setupCustomNotificationClick(Context context) {
         UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
             @Override

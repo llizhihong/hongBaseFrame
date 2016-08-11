@@ -1,6 +1,5 @@
 package com.hong.hongbaseframe.okhttp;
 
-import android.util.Log;
 import android.util.Pair;
 import android.widget.ImageView;
 
@@ -237,8 +236,6 @@ public abstract class OkHttpRequest {
         }
 
         public void startInvoke(OkHttpRequest request, ResultCallback callback) {
-            OnResponseListener listener = callback.listener;
-            Log.e("listener", "?" + listener.toString());
             request.invokeAsyn(callback);
         }
 

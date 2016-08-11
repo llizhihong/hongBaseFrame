@@ -23,7 +23,7 @@ public class FragmentTabAdapter implements RadioGroup.OnCheckedChangeListener{
 		// 默认显示第一页
 		FragmentTransaction ft = fragmentManager.beginTransaction();
 		ft.add(fragmentContentId, fragments.get(0));
-		ft.addToBackStack(fragments.get(0).getClass().getName());
+//		ft.addToBackStack(null);
 		ft.commit();
 		rgs.setOnCheckedChangeListener(this);
 
@@ -51,7 +51,6 @@ public class FragmentTabAdapter implements RadioGroup.OnCheckedChangeListener{
 				}
 				showTab(i); // 显示目标tab
 				ft.commit();
-
 				// 如果设置了切换tab额外功能功能接口
 				if(null != onRgsExtraCheckedChangedListener){
 					onRgsExtraCheckedChangedListener.OnRgsExtraCheckedChanged(radioGroup, checkedId, i);

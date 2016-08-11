@@ -162,7 +162,7 @@ public class OkHttpClientManager {
     }
 
     public void sendSuccessResultCallback(final Request request, final Object object,
-                                          final ResultCallback callback) {
+                                         final ResultCallback callback) {
         if (callback == null)
             return;
         mDelivery.post(new Runnable() {

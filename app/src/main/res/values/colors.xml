@@ -348,4 +348,14 @@
     <!-- ios -->
     <color name="ios">#FC6146</color>
     <!-- 黑色 -->
+
+    <color name="bp">#fff7f7f0</color>
+    <color name="f8">#00000000</color>
+
+    <!-- 按钮默认背景色 -->
+    <color name="btn_common_normal">#fe6246</color>
+    <!-- 文字默认颜色 -->
+    <color name="tv_common_normal">#515151</color>
+    <!-- 提示文字颜色 -->
+    <color name="tv_common_hint">#a4a4a4</color>
 </resources>

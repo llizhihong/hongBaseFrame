@@ -6,7 +6,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 
 import com.hong.hongbaseframe.MainActivity;
-import com.hong.hongbaseframe.activity.login.LoginActivity;
+import com.hong.hongbaseframe.activity.LoginActivity;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
