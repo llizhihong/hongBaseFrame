@@ -68,7 +68,8 @@
         <!-- 主界面 -->
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"/>
 
         <!-- 公用WebView -->
         <activity

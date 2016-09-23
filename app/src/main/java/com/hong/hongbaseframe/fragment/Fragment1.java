@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.hong.hongbaseframe.R;
 import com.hong.hongbaseframe.util.DensityUtil;
@@ -28,12 +26,6 @@ public class Fragment1 extends BasePage {
     @Bind(R.id.fragment1_banner)
     ConvenientBanner<String> convenientBanner;// 顶部广告栏控件
     List<String> banaerList;
-    @Bind(R.id.progress)
-    ProgressBar progressBar;
-    @Bind(R.id.tv)
-    TextView tv;
-    @Bind(R.id.lin1)
-    LinearLayout lin1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,12 +65,6 @@ public class Fragment1 extends BasePage {
                 "eV9wYWNrYWdlX25hbWUiLCJwYWNrYWdlTmFtZSI6ImNvbS5qaWFuYW5maW5hbmNlLnRoZWJhbmsifX" +
                 "0Wdj01B0000872640", "建安金融.apk", this);*/
 
-        tv.setOnClickListener(null);
-        lin1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
     }
 
     @Override
@@ -93,7 +79,6 @@ public class Fragment1 extends BasePage {
     @Override
     public void onProgress(float progress) {
 //        Logger.e("进度显示", progress + "");
-        progressBar.setProgress((int) progress);
     }
 
     @Override

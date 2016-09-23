@@ -358,4 +358,11 @@
     <color name="tv_common_normal">#515151</color>
     <!-- 提示文字颜色 -->
     <color name="tv_common_hint">#a4a4a4</color>
+
+    <integer-array name="momdule_aterial_colors">
+        <item>@color/black</item>
+        <item>@color/black</item>
+        <item>@color/black</item>
+        <item>@color/black</item>
+    </integer-array>
 </resources>

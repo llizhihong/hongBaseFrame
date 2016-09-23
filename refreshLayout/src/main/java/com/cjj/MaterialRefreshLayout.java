@@ -17,7 +17,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 
-public class MaterialRefreshLayout  extends FrameLayout {
+public class MaterialRefreshLayout extends FrameLayout {
 
     public static final String Tag = MaterialRefreshLayout.class.getSimpleName();
     private final static int DEFAULT_WAVE_HEIGHT = 140;
@@ -80,6 +80,7 @@ public class MaterialRefreshLayout  extends FrameLayout {
         if (getChildCount() > 1) {
             throw new RuntimeException("can only have one child widget");
         }
+
         decelerateInterpolator = new DecelerateInterpolator(10);
 
 
@@ -203,16 +204,11 @@ public class MaterialRefreshLayout  extends FrameLayout {
                         mSunLayout.onBegin(this);
                     }
                     return true;
-                } else if(!canChildScrollDown()){
-                    Log.e("canChildScrollDown", "到底部了？");
-                }else if (dy < 0 && !canChildScrollDown() && isLoadMore) {
+                } else if (dy < 0 && !canChildScrollDown() && isLoadMore) {
                     if (mMaterialFooterView != null && !isLoadMoreing) {
-//                        soveLoadMoreLogic();
-                        mMaterialFooterView.setVisibility(View.VISIBLE);
-                        mMaterialFooterView.onBegin(this);
+                        soveLoadMoreLogic();
                     }
-//                    return super.onInterceptTouchEvent(ev);
-                    return true;
+                    return super.onInterceptTouchEvent(ev);
                 }
                 break;
         }
@@ -239,37 +235,27 @@ public class MaterialRefreshLayout  extends FrameLayout {
             case MotionEvent.ACTION_MOVE:
                 mCurrentY = e.getY();
                 float dy = mCurrentY - mTouchY;
-                Log.e("onTouchEvent_MOVE_1", mCurrentY + "  " + mTouchY + "  " + dy+ "  " );
-                if(dy > 0){
-                    dy = Math.min(mWaveHeight * 2, dy);
-                    Log.e("onTouchEvent_MOVE_2", mWaveHeight + "  " + mWaveHeight * 2 + "  " + dy+ "  " );
-                    dy = Math.max(0, dy);
-                    Log.e("onTouchEvent_MOVE_3", dy + "");
-                    if (mChildView != null) {
-                        float offsetY = decelerateInterpolator.getInterpolation(dy / mWaveHeight / 2) * dy / 2;
-                        Log.e("onTouchEvent_MOVE_4", decelerateInterpolator.getInterpolation(dy / mWaveHeight / 2) + "  " + offsetY+ "  " );
-                        float fraction = offsetY / mHeadHeight;
-                        Log.e("onTouchEvent_MOVE_5", offsetY + "  " + mHeadHeight + "  " + fraction+ "  " +mMaterialHeaderView.getLayoutParams().height);
-                        if (mMaterialHeaderView != null) {
-                            mMaterialHeaderView.getLayoutParams().height = (int) offsetY;
-                            mMaterialHeaderView.requestLayout();
-                            mMaterialHeaderView.onPull(this, fraction);
-                        } else if (mSunLayout != null) {
-                            mSunLayout.getLayoutParams().height = (int) offsetY;
-                            mSunLayout.requestLayout();
-                            mSunLayout.onPull(this, fraction);
-                        }
-                        if (!isOverlay)
-                            ViewCompat.setTranslationY(mChildView, offsetY);
-
+                dy = Math.min(mWaveHeight * 2, dy);
+                dy = Math.max(0, dy);
+                if (mChildView != null) {
+                    float offsetY = decelerateInterpolator.getInterpolation(dy / mWaveHeight / 2) * dy / 2;
+                    float fraction = offsetY / mHeadHeight;
+                    if (mMaterialHeaderView != null) {
+                        mMaterialHeaderView.getLayoutParams().height = (int) offsetY;
+                        mMaterialHeaderView.requestLayout();
+                        mMaterialHeaderView.onPull(this, fraction);
+                    } else if (mSunLayout != null) {
+                        mSunLayout.getLayoutParams().height = (int) offsetY;
+                        mSunLayout.requestLayout();
+                        mSunLayout.onPull(this, fraction);
                     }
-                } else{
-//                    ViewCompat.setTranslationY(mChildView, mMaterialHeaderView.getLayoutParams().height - 100);
+                    if (!isOverlay)
+                        ViewCompat.setTranslationY(mChildView, offsetY);
+
                 }
                 return true;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                Log.e("onTouchEvent_ACTION_UP", "ACTION_UP");
                 if (mChildView != null) {
                     if (mMaterialHeaderView != null) {
                         if (isOverlay) {

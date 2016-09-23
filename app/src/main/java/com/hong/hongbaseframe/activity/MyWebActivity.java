@@ -12,7 +12,7 @@ import butterknife.Bind;
  * 作者：李智宏 on 2016/6/13 10:56
  * 描述：H5展示方面
  */
-public class MyWebActivity extends BaseActivity {
+public class MyWebActivity extends GestureActivity {
 
     @Bind(R.id.myweb_webview)
     MyWebView mywebWebview;

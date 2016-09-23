@@ -12,8 +12,7 @@ import butterknife.ButterKnife;
 /**
  * 作者：李智宏 on 2016/5/30 16:41
  * 描述：
- */
-public class LoginActivity extends BaseActivity {
+ */public class LoginActivity extends GestureActivity{
     @Bind(R.id.btn_login)
     Button btnLogin;
 

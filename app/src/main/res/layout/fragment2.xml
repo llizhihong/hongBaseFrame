@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.cjj.MaterialRefreshLayout
+        android:id="@+id/refresh_fragment2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:isLoadMore="true"
+        app:overlay="true"
+        app:progress_colors="@array/momdule_aterial_colors"
+        app:wave_height_type="normal"
+        app:wave_show="false">
+
+        <ListView
+            android:id="@+id/lv_fragment2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+    </com.cjj.MaterialRefreshLayout>
+
+</LinearLayout>

@@ -36,7 +36,7 @@ public class CommonDialog {
      */
     public static void closeProgressDialog() {
         try {
-            if (progressDialog != null && progressDialog.isShowing()) {
+            if (progressDialog != null || progressDialog.isShowing()) {
                 progressDialog.dismiss();
                 mShowingDialog = false;
             }

@@ -7,14 +7,23 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="AppTheme1" parent="ApptThemeCommon">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
     <style name="text">
         <item name="android:background">?selectableItemBackground</item>
     </style>
+
     <style name="ApptThemeCommon" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/bg_activity</item>
         <item name="colorButtonNormal">#fe6246</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
         <!-- 页面字体默认颜色 -->
         <item name="android:textColorPrimary">@color/tv_common_normal</item>
         <!-- 页面提示文字默认颜色 -->
@@ -68,5 +77,12 @@
         <item name="android:singleLine">true</item>
         <item name="android:drawablePadding">-7dp</item>
         <item name="android:layout_weight">1.0</item>
+    </style>
+    <!-- swipeBackLayout style -->
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@mipmap/shadow_left</item>
+        <item name="shadow_right">@mipmap/shadow_right</item>
+        <item name="shadow_bottom">@mipmap/shadow_bottom</item>
     </style>
 </resources>

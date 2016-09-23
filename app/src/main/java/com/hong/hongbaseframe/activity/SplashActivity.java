@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.hong.hongbaseframe.Constant;
+import com.hong.hongbaseframe.MainActivity;
 import com.hong.hongbaseframe.R;
 import com.hong.hongbaseframe.util.CommonUtil;
 import com.hong.hongbaseframe.util.SharePrefUtil;
@@ -34,7 +35,7 @@ public class SplashActivity extends BaseActivity{
         if(SharePrefUtil.getBoolean(context, Constant.SHARE_ISFIRST, false)){
             if (b) {
                 if(SharePrefUtil.getString(context, Constant.SHARE_USERID, "").equals("")){
-                    startActivity(LoginActivity.class);
+                    startActivity(MainActivity.class);
                     finish();
                 } else{
                     sendLogin();
@@ -53,7 +54,7 @@ public class SplashActivity extends BaseActivity{
 
     //自动登录
     private void sendLogin(){
-        startActivity(LoginActivity.class);
+        startActivity(MainActivity.class);
         finish();
     }
 

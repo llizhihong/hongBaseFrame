@@ -39,6 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnRespon
         if(setContentView() != 0) {
             setContentView(setContentView());
             ButterKnife.bind(this);
+            AppManager.getInstance().addActivity(this);
             init();
             setListner();
         }

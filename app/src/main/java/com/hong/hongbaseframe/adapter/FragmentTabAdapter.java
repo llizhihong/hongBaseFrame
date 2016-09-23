@@ -21,10 +21,10 @@ public class FragmentTabAdapter implements RadioGroup.OnCheckedChangeListener{
 		this.fragmentManager = fragmentManager;
 		this.fragmentContentId = fragmentContentId;
 		// 默认显示第一页
-		FragmentTransaction ft = fragmentManager.beginTransaction();
-		ft.add(fragmentContentId, fragments.get(0));
+//		FragmentTransaction ft = fragmentManager.beginTransaction();
+//		ft.add(fragmentContentId, fragments.get(0));
 //		ft.addToBackStack(null);
-		ft.commit();
+//		ft.commit();
 		rgs.setOnCheckedChangeListener(this);
 
 	}
